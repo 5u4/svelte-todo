@@ -1,4 +1,5 @@
 <script>
+	import { slide } from "svelte/transition";
 	import { tasks } from "./store/tasks.js";
 
 	let task = "";
@@ -21,7 +22,7 @@
 <button on:click={handleAddTask}>Add</button>
 
 {#each $tasks as task (task)}
-	<ul>
+	<ul transition:slide>
 		{task}
 	</ul>
 {/each}
