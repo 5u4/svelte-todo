@@ -1,11 +1,27 @@
 <script>
-	export let name;
+	let tasks = [];
+
+	let task = "";
+
+	const addTask = () => {
+	  tasks = [...tasks, task];
+	  task = "";
+	};
+
+	const handleKeydown = e => {
+	  if (e.key !== "Enter") {
+	    return;
+	  }
+
+	  addTask();
+	};
 </script>
 
-<style>
-	h1 {
-	  color: purple;
-	}
-</style>
+<input bind:value={task} on:keydown={handleKeydown}>
+<button on:click={addTask}>Add</button>
 
-<h1>Hello {name}!</h1>
+{#each tasks as task (task)}
+	<ul>
+		{task}
+	</ul>
+{/each}
